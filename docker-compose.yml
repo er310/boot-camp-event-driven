@@ -1,0 +1,28 @@
+version: "2"
+volumes:
+  db-postgresdb:
+
+services:
+
+  postgresdb:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: boot-camp-event-driven
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    volumes:
+      - db-postgresdb:/var/lib/postgresql/data
+    ports:
+      - "5435:5435"
+
+  api:
+    build:
+      context: api
+    ports:
+      - "8085:8085"
+      - "9225:9225"
+    depends_on:
+      - postgresdb
+    env_file:
+      - .env
