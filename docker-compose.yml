@@ -4,25 +4,34 @@ volumes:
 
 services:
 
-  postgresdb:
+  order-postgresdb:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_DB: boot-camp-event-driven
+      POSTGRES_DB: event-driven-order
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
     volumes:
-      - db-postgresdb:/var/lib/postgresql/data
+      - db-postgresdb:/var/lib/order-postgresdb/data
     ports:
-      - "5435:5435"
+      - "5435:5432"
 
-  api:
+  order:
     build:
-      context: api
+      context: order
+    ports:
+      - "8086:8086"
+      - "9226:9226"
+    depends_on:
+      - order-postgresdb
+    env_file:
+      - .env
+
+  backend:
+    build:
+      context: backend
     ports:
       - "8085:8085"
       - "9225:9225"
-    depends_on:
-      - postgresdb
     env_file:
       - .env
