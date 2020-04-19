@@ -1,4 +1,4 @@
-package com.tw.inventory.exception;
+package com.tw.library.exception;
 
 import java.util.Map;
 

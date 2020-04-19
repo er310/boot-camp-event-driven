@@ -2,6 +2,7 @@ package com.tw.inventory.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.tw.library.model.Condition;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("costume")

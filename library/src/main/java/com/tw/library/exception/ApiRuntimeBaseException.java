@@ -1,14 +1,14 @@
-package com.tw.backend.exception;
+package com.tw.library.exception;
 
 import java.util.Map;
 
-public class ApiBaseException extends Exception implements BaseException {
+public class ApiRuntimeBaseException extends RuntimeException implements BaseException {
 
-    static final long serialVersionUID = 10000L;
+    static final long serialVersionUID = 10001L;
     protected ErrorCode code;
     private ExceptionResponse response;
 
-    public ApiBaseException(String message, ErrorCode code) {
+    public ApiRuntimeBaseException(String message, ErrorCode code) {
         super(message);
 
         this.code = code;

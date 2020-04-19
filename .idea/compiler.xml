@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="library" />
         <module name="inventory" />
         <module name="order" />
         <module name="backend" />
@@ -15,6 +16,7 @@
       <module name="api" target="13" />
       <module name="backend" target="11" />
       <module name="inventory" target="11" />
+      <module name="library" target="11" />
       <module name="order" target="11" />
     </bytecodeTargetLevel>
   </component>
@@ -23,6 +25,7 @@
       <module name="api" options="-parameters" />
       <module name="backend" options="-parameters" />
       <module name="inventory" options="-parameters" />
+      <module name="library" options="-parameters" />
       <module name="order" options="-parameters" />
     </option>
   </component>

@@ -1,4 +1,4 @@
-package com.tw.inventory.entity;
+package com.tw.library.model;
 
 public enum Condition {
     NEW,

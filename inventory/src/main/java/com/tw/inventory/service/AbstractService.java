@@ -1,7 +1,7 @@
 package com.tw.inventory.service;
 
-import com.tw.inventory.exception.ErrorCode;
-import com.tw.inventory.exception.RecordNotFoundBaseException;
+import com.tw.library.exception.ErrorCode;
+import com.tw.library.exception.RecordNotFoundBaseException;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

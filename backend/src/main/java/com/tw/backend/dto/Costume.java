@@ -1,5 +1,7 @@
 package com.tw.backend.dto;
 
+import com.tw.library.model.Condition;
+
 public class Costume {
     protected final String costumeId;
     protected final Condition condition;

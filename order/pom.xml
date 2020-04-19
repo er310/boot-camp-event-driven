@@ -16,6 +16,7 @@
 
     <properties>
         <java.version>11</java.version>
+        <com.tw.library.version>0.0.1-SNAPSHOT</com.tw.library.version>
     </properties>
 
     <dependencies>
@@ -47,6 +48,12 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.tw</groupId>
+            <artifactId>library</artifactId>
+            <version>${com.tw.library.version}</version>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 

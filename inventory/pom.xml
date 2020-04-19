@@ -16,6 +16,7 @@
 
     <properties>
         <java.version>11</java.version>
+        <com.tw.library.version>0.0.1-SNAPSHOT</com.tw.library.version>
     </properties>
 
     <dependencies>
@@ -48,6 +49,13 @@
             <groupId>javax.persistence</groupId>
             <artifactId>javax.persistence-api</artifactId>
             <version>2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tw</groupId>
+            <artifactId>library</artifactId>
+            <version>${com.tw.library.version}</version>
+            <optional>true</optional>
         </dependency>
 
     </dependencies>

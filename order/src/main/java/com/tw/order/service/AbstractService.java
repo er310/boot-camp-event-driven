@@ -1,7 +1,5 @@
 package com.tw.order.service;
 
-import com.tw.order.exception.ErrorCode;
-import com.tw.order.exception.RecordNotFoundBaseException;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
