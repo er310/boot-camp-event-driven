@@ -1,8 +1,18 @@
 version: "2"
 volumes:
   db-postgresdb:
+  db-mongodb:
 
 services:
+
+  backend:
+    build:
+      context: backend
+    ports:
+      - "8085:8085"
+      - "9225:9225"
+    env_file:
+      - .env
 
   order-postgresdb:
     image: postgres:latest
@@ -27,11 +37,21 @@ services:
     env_file:
       - .env
 
-  backend:
-    build:
-      context: backend
+  inventory-mongodb:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - db-mongodb:inventory-mongodb/data/db
     ports:
-      - "8085:8085"
-      - "9225:9225"
+      - "27010:27017"
+
+  inventory:
+    build:
+      context: inventory
+    ports:
+      - "8087:8087"
+      - "9227:9227"
+    depends_on:
+      - inventory-mongodb
     env_file:
       - .env
