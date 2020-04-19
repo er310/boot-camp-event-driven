@@ -2,8 +2,22 @@ version: "2"
 volumes:
   db-postgresdb:
   db-mongodb:
+  mq-activemq:
 
 services:
+
+  activemq:
+    image: webcenter/activemq:latest
+    hostname: activemq
+    environment:
+      ACTIVEMQ_ADMIN_LOGIN: admin
+      ACTIVEMQ_ADMIN_PASSWORD: admin
+    volumes:
+    - mq-activemq:/opt/activemq
+    ports:
+      - "61616:61616"
+      - "61613:61613"
+      - "8161:8161"
 
   backend:
     build:
@@ -45,7 +59,7 @@ services:
       #MONGO_INITDB_ROOT_USERNAME: root
       #MONGO_INITDB_ROOT_PASSWORD: root
     volumes:
-      - db-mongodb:inventory-mongodb/data/db
+      - db-mongodb:/inventory-mongodb/data/db
     ports:
       - "27010:27017"
 

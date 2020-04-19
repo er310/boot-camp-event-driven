@@ -33,7 +33,7 @@ public class OrderController {
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    Order create(@RequestBody Order book) {
-        return service.create(book);
+    Order create(@RequestBody Order order) {
+        return service.create(order);
     }
 }

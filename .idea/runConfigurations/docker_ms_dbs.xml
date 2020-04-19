@@ -1,10 +1,12 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="docker-dbs" type="docker-deploy" factoryName="docker-compose.yml" singleton="false" server-name="Docker">
+  <configuration default="false" name="docker-ms-dbs" type="docker-deploy" factoryName="docker-compose.yml" singleton="false" server-name="Docker">
     <deployment type="docker-compose.yml">
       <settings>
         <option name="services">
           <list>
             <option value="order-postgresdb" />
+            <option value="inventory-mongodb" />
+            <option value="activemq" />
           </list>
         </option>
         <option name="sourceFilePath" value="docker-compose.yml" />
