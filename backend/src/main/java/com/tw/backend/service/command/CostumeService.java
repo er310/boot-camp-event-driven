@@ -1,7 +1,8 @@
 package com.tw.backend.service.command;
 
 import com.tw.backend.dto.Costume;
+import com.tw.library.data.Result;
 
 public interface CostumeService {
-    Costume sendMessage(Costume costume);
+    Result<Costume> sendMessage(Costume costume);
 }

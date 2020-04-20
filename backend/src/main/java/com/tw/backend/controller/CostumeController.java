@@ -36,6 +36,6 @@ public class CostumeController {
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     Result<Costume> create(@RequestBody Costume costume) {
-        return new Result<>(this.service.sendMessage(costume));
+        return this.service.sendMessage(costume);
     }
 }

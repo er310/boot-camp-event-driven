@@ -2,8 +2,10 @@ package com.tw.backend.dto;
 
 import com.tw.library.model.Condition;
 
-public class Costume {
-    
+import java.io.Serializable;
+
+public class Costume implements Serializable {
+
     protected final String costumeId;
     protected final Condition condition;
 

@@ -1,5 +1,6 @@
 package com.tw.backend.config;
 
+import com.tw.library.model.JmsServiceCode;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,11 +29,8 @@ public class JmsConfig {
     @Value("${jms.broker.password}")
     private String password;
 
-    @Value("${jms.topic.name}")
-    private String topicName;
-
-    @Value("${jms.queue.name}")
-    private String queueName;
+    private String topicName = JmsServiceCode.TOPIC_BACKEND.getValue();
+    private String queueName = JmsServiceCode.QUEUE_BACKEND.getValue();
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JmsConfig.class);
 

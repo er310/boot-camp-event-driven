@@ -1,28 +1,33 @@
 package com.tw.backend.service.command;
 
 import com.tw.backend.dto.Costume;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsTemplate;
+import com.tw.backend.helper.JmsProducer;
+import com.tw.library.data.Result;
+import com.tw.library.data.Status;
+import com.tw.library.model.JmsServiceCode;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CostumeServiceImpl implements CostumeService {
-    private JmsTemplate jmsTemplate;
 
-    @Autowired
+    private final JmsProducer jmsProducer;
 
-    public CostumeServiceImpl(JmsTemplate jmsTemplate) {
-        this.jmsTemplate = jmsTemplate;
+    public CostumeServiceImpl(JmsProducer jmsProducer) {
+        this.jmsProducer = jmsProducer;
     }
 
     @Override
-    public Costume sendMessage(Costume costume) {
+    public Result<Costume> sendMessage(Costume costume) {
+        Result<Costume> result;
+
         try {
-            jmsTemplate.convertAndSend(costume);
+            this.jmsProducer.convertAndSend(JmsServiceCode.QUEUE_INVENTORY_COSTUME, costume);
+
+            result = new Result<>(costume);
         } catch (Exception e) {
-            e.printStackTrace();
+            result = new Result<>(Status.FAIL, e.getMessage());
         }
 
-        return costume;
+        return result;
     }
 }
