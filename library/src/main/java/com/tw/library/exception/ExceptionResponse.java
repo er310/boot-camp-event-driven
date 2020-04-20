@@ -1,25 +1,17 @@
 package com.tw.library.exception;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.tw.library.data.Result;
+import com.tw.library.data.Status;
 
 public class ExceptionResponse {
 
-    private final int code;
-    private final String message;
+    private final Result<?> result;
 
     public ExceptionResponse(int code, String message) {
-        this.code = code;
-        this.message = message;
+        result = new Result<>(Status.FAIL, code, message);
     }
 
-    public Map<String, ?> getMapForResponse() {
-        Map<String, Object> retVal = new HashMap<>();
-
-        retVal.put("status", "error");
-        retVal.put("code", code);
-        retVal.put("message", message);
-
-        return retVal;
+    public Result<?> getResponse() {
+        return this.result;
     }
 }

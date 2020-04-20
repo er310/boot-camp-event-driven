@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.connection.CachingConnectionFactory;
 import org.springframework.jms.core.JmsTemplate;
@@ -96,6 +97,7 @@ public class JmsConfig {
      * @return JmsTemplate
      * @see JmsTemplate
      */
+    @Primary
     @Bean(name = "jmsTemplateQueue")
     public JmsTemplate jmsTemplateQueue(@Qualifier("connectionFactory") ConnectionFactory factory) {
         LOGGER.debug("<<<<<< Loading jmsTemplateQueue");

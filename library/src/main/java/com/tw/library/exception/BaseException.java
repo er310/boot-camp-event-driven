@@ -1,7 +1,7 @@
 package com.tw.library.exception;
 
-import java.util.Map;
+import com.tw.library.data.Result;
 
 public interface BaseException {
-    Map<String, ?> getMapForResponse();
+    Result<?> getResponse();
 }
