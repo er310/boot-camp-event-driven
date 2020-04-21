@@ -23,8 +23,8 @@ services:
     build:
       context: backend
     ports:
-      - "8085:8085"
-      - "9225:9225"
+      - "8085:8080"
+      - "9225:9221"
     env_file:
       - .env
 
@@ -44,8 +44,8 @@ services:
     build:
       context: order
     ports:
-      - "8086:8086"
-      - "9226:9226"
+      - "8086:8080"
+      - "9226:9221"
     depends_on:
       - order-postgresdb
     env_file:
@@ -67,8 +67,8 @@ services:
     build:
       context: inventory
     ports:
-      - "8087:8087"
-      - "9227:9227"
+      - "8087:8080"
+      - "9227:9221"
     depends_on:
       - inventory-mongodb
     env_file:

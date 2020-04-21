@@ -21,4 +21,12 @@ public class CostumeDto implements Serializable {
     public Condition getCondition() {
         return this.condition;
     }
+
+    @Override
+    public String toString() {
+        return "CostumeDto{" +
+                "costumeId='" + costumeId + '\'' +
+                ", condition=" + condition +
+                '}';
+    }
 }
