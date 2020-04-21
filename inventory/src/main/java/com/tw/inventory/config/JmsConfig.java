@@ -9,14 +9,20 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jms.annotation.EnableJms;
+import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.connection.CachingConnectionFactory;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
+import org.springframework.jms.support.converter.MessageConverter;
+import org.springframework.jms.support.converter.MessageType;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.jms.ConnectionFactory;
 import java.text.MessageFormat;
 
 @Configuration
+@EnableJms
 public class JmsConfig {
     @Value("${jms.broker.url}")
     private String broker;
@@ -45,12 +51,11 @@ public class JmsConfig {
      **/
     @Bean(name = "connectionFactory")
     public ConnectionFactory connectionFactory() {
-        LOGGER.debug("<<<<<< Loading connectionFactory");
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
         connectionFactory.setBrokerURL(broker);
         connectionFactory.setUserName(username);
         connectionFactory.setPassword(password);
-        LOGGER.debug(MessageFormat.format("{0} loaded successfully >>>>>>>", broker));
+        connectionFactory.setTrustAllPackages(true);
 
         return connectionFactory;
     }
@@ -77,12 +82,10 @@ public class JmsConfig {
      */
     @Bean(name = "jmsTemplateTopic")
     public JmsTemplate jmsTemplateTopic(@Qualifier("connectionFactory") ConnectionFactory factory) {
-        LOGGER.debug("<<<<<< Loading jmsTemplateTopic");
         JmsTemplate template = new JmsTemplate();
         template.setConnectionFactory(factory);
         template.setDefaultDestinationName(topicName);
         template.setPubSubDomain(true);
-        LOGGER.debug("jmsTemplateTopic loaded >>>>>>>");
 
         return template;
     }
@@ -96,14 +99,44 @@ public class JmsConfig {
     @Primary
     @Bean(name = "jmsTemplateQueue")
     public JmsTemplate jmsTemplateQueue(@Qualifier("connectionFactory") ConnectionFactory factory) {
-        LOGGER.debug("<<<<<< Loading jmsTemplateQueue");
         JmsTemplate template = new JmsTemplate();
         template.setConnectionFactory(factory);
         template.setDefaultDestinationName(queueName);
         template.setPubSubDomain(false);
-        LOGGER.debug("jmsTemplateQueue loaded >>>>>>>>");
 
         return template;
+    }
+
+    /**
+     * Jms Listener
+     *
+     * @param factory
+     * @return DefaultJmsListenerContainerFactory
+     */
+    @Bean(name = "jmsListenerContainerFactory")
+    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(@Qualifier("connectionFactory") ConnectionFactory factory) {
+        DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory = new DefaultJmsListenerContainerFactory();
+        defaultJmsListenerContainerFactory.setConnectionFactory(factory);
+        defaultJmsListenerContainerFactory.setConcurrency("3-10");
+        defaultJmsListenerContainerFactory.setErrorHandler(
+                t -> LOGGER.error("Listening: an error has occurred in the transaction. Message: "
+                        + t.getCause().getMessage()));
+
+        return defaultJmsListenerContainerFactory;
+    }
+
+    /**
+     * Serialize message content to json using TextMessage
+     *
+     * @return MessageConverter
+     */
+    @Bean("jacksonJmsMessageConverter")
+    public MessageConverter jacksonJmsMessageConverter() {
+        MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
+        converter.setTargetType(MessageType.TEXT);
+        converter.setTypeIdPropertyName("_type");
+
+        return converter;
     }
 
     /**

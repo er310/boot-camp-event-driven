@@ -5,14 +5,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @MappedSuperclass
 public class AbstractEntity implements BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    protected UUID id;
+    protected String id;
 
     @JsonIgnore
     @Transient
@@ -20,11 +18,11 @@ public class AbstractEntity implements BaseEntity {
 
     protected String name;
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public UUID getId() {
+    public String getId() {
         return this.id;
     }
 

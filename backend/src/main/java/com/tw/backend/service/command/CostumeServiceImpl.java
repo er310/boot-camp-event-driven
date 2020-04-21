@@ -1,9 +1,9 @@
 package com.tw.backend.service.command;
 
-import com.tw.backend.dto.Costume;
 import com.tw.backend.helper.JmsProducer;
 import com.tw.library.data.Result;
 import com.tw.library.data.Status;
+import com.tw.library.dto.CostumeDto;
 import com.tw.library.model.JmsServiceCode;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +17,8 @@ public class CostumeServiceImpl implements CostumeService {
     }
 
     @Override
-    public Result<Costume> sendMessage(Costume costume) {
-        Result<Costume> result;
+    public Result<CostumeDto> sendMessage(CostumeDto costume) {
+        Result<CostumeDto> result;
 
         try {
             this.jmsProducer.convertAndSend(JmsServiceCode.QUEUE_INVENTORY_COSTUME, costume);

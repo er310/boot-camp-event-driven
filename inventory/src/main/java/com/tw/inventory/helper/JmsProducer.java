@@ -20,12 +20,12 @@ public class JmsProducer {
 
     public void convertAndSend(JmsServiceCode jmsServiceCode, Object o) {
         if (this.jmsTemplate == null)
-            throw new JmsBrokerException("JmsBroker failed to find template: ", ErrorCode.JMS_EXCEPTION);
+            throw new JmsBrokerException("JmsBroker: failed to find template.", ErrorCode.JMS_EXCEPTION);
 
         try {
             this.jmsTemplate.convertAndSend(jmsServiceCode.getValue(), o);
         } catch (JmsException e) {
-            throw new JmsBrokerException("JmsBroker failed: ", ErrorCode.JMS_EXCEPTION);
+            throw new JmsBrokerException("JmsBroker: failed.", ErrorCode.JMS_EXCEPTION);
         }
     }
 }

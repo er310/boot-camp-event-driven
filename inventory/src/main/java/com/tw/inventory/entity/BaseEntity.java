@@ -1,11 +1,9 @@
 package com.tw.inventory.entity;
 
-import java.util.UUID;
-
 public interface BaseEntity {
-    void setId(UUID id);
+    void setId(String id);
 
-    UUID getId();
+    String getId();
 
     boolean getIsNew();
 

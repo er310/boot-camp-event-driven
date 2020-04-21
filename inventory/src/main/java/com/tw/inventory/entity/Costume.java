@@ -5,13 +5,18 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tw.library.model.Condition;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("costume")
+@Document(collection = "costume")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Costume extends AbstractEntity {
 
     protected String refNo;
     protected Condition condition;
+
+    public Costume(String refNo, Condition condition) {
+        this.refNo = refNo;
+        this.condition = condition;
+    }
 
     public void setRefNo(String refNo) {
         this.refNo = refNo;

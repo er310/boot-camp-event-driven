@@ -1,15 +1,15 @@
-package com.tw.backend.dto;
+package com.tw.library.dto;
 
 import com.tw.library.model.Condition;
 
 import java.io.Serializable;
 
-public class Costume implements Serializable {
+public class CostumeDto implements Serializable {
 
     protected final String costumeId;
     protected final Condition condition;
 
-    public Costume(final String costumeId, final Condition condition) {
+    public CostumeDto(final String costumeId, final Condition condition) {
         this.costumeId = costumeId;
         this.condition = condition;
     }
