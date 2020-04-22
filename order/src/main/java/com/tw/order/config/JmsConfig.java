@@ -1,4 +1,4 @@
-package com.tw.inventory.config;
+package com.tw.order.config;
 
 import com.tw.library.config.JmsBasic;
 import com.tw.library.model.JmsServiceCode;
@@ -10,8 +10,8 @@ import org.springframework.jms.annotation.EnableJms;
 @EnableJms
 public class JmsConfig extends JmsBasic {
 
-    private final static String topicName = JmsServiceCode.TOPIC_INVENTORY.getValue();
-    private final static String queueName = JmsServiceCode.QUEUE_INVENTORY.getValue();
+    private final static String topicName = JmsServiceCode.TOPIC_ORDER.getValue();
+    private final static String queueName = JmsServiceCode.QUEUE_ORDER.getValue();
 
     public JmsConfig(@Value("${jms.broker.url}") String broker,
                      @Value("${jms.broker.username}") String username,

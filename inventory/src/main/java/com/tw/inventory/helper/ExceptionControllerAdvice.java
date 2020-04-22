@@ -42,6 +42,14 @@ public class ExceptionControllerAdvice {
                 new ApiBaseException(e.getMessage(), ErrorCode.SERVER_EXCEPTION));
     }
 
+    /**
+     * Write to Http response
+     *
+     * @param response
+     * @param code
+     * @param e
+     * @throws IOException
+     */
     private void writeResponse(HttpServletResponse response, int code, BaseException e) throws IOException {
         response.setStatus(code);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);

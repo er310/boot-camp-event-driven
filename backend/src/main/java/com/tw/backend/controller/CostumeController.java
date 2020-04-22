@@ -35,7 +35,7 @@ public class CostumeController {
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    Result<CostumeDto> create(@RequestBody CostumeDto costume) {
-        return this.service.sendMessage(costume);
+    Result<CostumeDto> create(@RequestBody CostumeDto dto) {
+        return this.service.sendMessage(dto);
     }
 }

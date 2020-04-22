@@ -13,7 +13,7 @@ public enum OrderChannelCode {
     }
 
     public String getValue() {
-        return code;
+        return this.code;
     }
 
     public static class Constants {

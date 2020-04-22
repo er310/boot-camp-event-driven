@@ -1,4 +1,4 @@
-package com.tw.inventory.helper;
+package com.tw.order.helper;
 
 import com.tw.library.helper.JmsBasicProducer;
 import org.springframework.beans.factory.annotation.Autowired;

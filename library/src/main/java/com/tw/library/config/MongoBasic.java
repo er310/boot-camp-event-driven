@@ -7,7 +7,7 @@ import org.springframework.core.convert.converter.Converter;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MongoBasicConfig {
+public abstract class MongoBasic {
 
     public List<Converter<?, ?>> getConversions() {
         final List<Converter<?, ?>> converters = new ArrayList<>();

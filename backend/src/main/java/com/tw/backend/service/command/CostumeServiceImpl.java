@@ -17,13 +17,13 @@ public class CostumeServiceImpl implements CostumeService {
     }
 
     @Override
-    public Result<CostumeDto> sendMessage(CostumeDto costume) {
+    public Result<CostumeDto> sendMessage(CostumeDto dto) {
         Result<CostumeDto> result;
 
         try {
-            this.jmsProducer.convertAndSend(JmsServiceCode.QUEUE_INVENTORY_COSTUME, costume);
+            this.jmsProducer.convertAndSend(JmsServiceCode.QUEUE_INVENTORY_COSTUME, dto);
 
-            result = new Result<>(costume);
+            result = new Result<>(dto);
         } catch (Exception e) {
             result = new Result<>(Status.FAIL, e.getMessage());
         }

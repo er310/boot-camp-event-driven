@@ -4,5 +4,5 @@ import com.tw.library.data.Result;
 import com.tw.library.dto.CostumeDto;
 
 public interface CostumeService {
-    Result<CostumeDto> sendMessage(CostumeDto costume);
+    Result<CostumeDto> sendMessage(CostumeDto dto);
 }

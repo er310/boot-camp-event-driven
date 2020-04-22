@@ -9,6 +9,11 @@ public class CostumeDto implements Serializable {
     protected final String costumeId;
     protected final Condition condition;
 
+    public CostumeDto() {
+        this.costumeId = null;
+        this.condition = null;
+    }
+
     public CostumeDto(final String costumeId, final Condition condition) {
         this.costumeId = costumeId;
         this.condition = condition;

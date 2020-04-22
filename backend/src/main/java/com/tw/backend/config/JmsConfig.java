@@ -1,6 +1,6 @@
 package com.tw.backend.config;
 
-import com.tw.library.config.JmsBasicConfig;
+import com.tw.library.config.JmsBasic;
 import com.tw.library.model.JmsServiceCode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +8,7 @@ import org.springframework.jms.annotation.EnableJms;
 
 @Configuration
 @EnableJms
-public class JmsConfig extends JmsBasicConfig {
+public class JmsConfig extends JmsBasic {
 
     private final static String topicName = JmsServiceCode.TOPIC_BACKEND.getValue();
     private final static String queueName = JmsServiceCode.QUEUE_BACKEND.getValue();

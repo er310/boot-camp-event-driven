@@ -16,7 +16,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.jms.ConnectionFactory;
 
-public abstract class JmsBasicConfig {
+public abstract class JmsBasic {
 
     private String broker;
     private String username;
@@ -24,16 +24,16 @@ public abstract class JmsBasicConfig {
     private String topicName;
     private String queueName;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(JmsBasicConfig.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(JmsBasic.class);
 
-    public JmsBasicConfig(String broker, String username, String password, String topicName, String queueName) {
+    public JmsBasic(String broker, String username, String password, String topicName, String queueName) {
         this.broker = broker;
         this.username = username;
         this.password = password;
         this.topicName = topicName;
         this.queueName = queueName;
 
-        LOGGER.info("Initializing: " + JmsBasicConfig.class);
+        LOGGER.info("Initializing: " + JmsBasic.class);
     }
 
     /**
