@@ -45,6 +45,7 @@
             <groupId>com.tw</groupId>
             <artifactId>library</artifactId>
             <version>${com.tw.library.version}</version>
+            <optional>true</optional>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
