@@ -30,7 +30,7 @@ public class CostumeController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     Result<CostumeDto> getById(@PathVariable Long id) {
-        return new Result<>(new CostumeDto("AC009", Condition.NEW));
+        return new Result<>(new CostumeDto("PANT", "AC009", Condition.NEW));
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

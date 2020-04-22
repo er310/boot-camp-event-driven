@@ -7,14 +7,11 @@ import java.io.Serializable;
 public class CostumeDto implements Serializable {
 
     protected final String costumeId;
+    protected final String name;
     protected final Condition condition;
 
-    public CostumeDto() {
-        this.costumeId = null;
-        this.condition = null;
-    }
-
-    public CostumeDto(final String costumeId, final Condition condition) {
+    public CostumeDto(final String name, final String costumeId, final Condition condition) {
+        this.name = name;
         this.costumeId = costumeId;
         this.condition = condition;
     }
@@ -27,10 +24,15 @@ public class CostumeDto implements Serializable {
         return this.condition;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     @Override
     public String toString() {
         return "CostumeDto{" +
                 "costumeId='" + costumeId + '\'' +
+                ", name='" + name + '\'' +
                 ", condition=" + condition +
                 '}';
     }

@@ -36,9 +36,13 @@ public class CostumeServiceImpl extends AbstractService<Costume, Long> implement
         Result<CostumeDto> result;
 
         try {
-            Costume costume = repository.save(new Costume(dto.getCostumeId(), dto.getCondition()));
-            if (costume != null) {
-                CostumeDto costumeDto = new CostumeDto(costume.getRefNo(), costume.getCondition());
+            Costume costume = new Costume(dto.getCostumeId(), dto.getCondition());
+            costume.setName(dto.getName());
+
+            CostumeDto costumeDto = new CostumeDto(
+                    costume.getName(), costume.getRefNo(), costume.getCondition());
+            Costume costume1 = repository.save(costume);
+            if (costume1 != null) {
                 OrderDto orderDto = new OrderDto(costumeDto);
 
                 this.jmsProducer.convertAndSend(JmsServiceCode.QUEUE_ORDER_COSTUME, orderDto);

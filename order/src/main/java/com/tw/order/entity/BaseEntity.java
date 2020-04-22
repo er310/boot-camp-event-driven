@@ -6,8 +6,4 @@ public interface BaseEntity {
     Long getId();
 
     boolean getIsNew();
-
-    void setName(String name);
-
-    String getName();
 }

@@ -15,9 +15,6 @@ public class AbstractEntity implements BaseEntity {
     @Transient
     protected boolean isNew;
 
-    @Column(nullable = false, unique = true)
-    protected String name;
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -28,13 +25,5 @@ public class AbstractEntity implements BaseEntity {
 
     public boolean getIsNew() {
         return this.isNew = (this.id == 0);
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return this.name;
     }
 }
