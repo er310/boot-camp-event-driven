@@ -35,6 +35,10 @@ docker-compose up --build
 
 ## Browse the Applications
 
+##### Client Application
+
+http://localhost:3000/
+
 ##### Swagger from Backend
 
 http://localhost:8085/v1/swagger-ui/index.html

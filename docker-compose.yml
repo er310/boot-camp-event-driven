@@ -19,6 +19,28 @@ services:
       - "61613:61613"
       - "8161:8161"
 
+  client:
+    environment:
+      REACT_APP_API_END_POINT_URL: http://localhost:8085/v1
+      NODE_ENV: development
+    build:
+      context: client
+    ports:
+      - "3010:3000"
+      - "9210:9220"
+    depends_on:
+      - backend
+    entrypoint:
+      - /bin/bash
+      - -c
+    command: "npm start"
+    volumes:
+      - ./client:/boot-camp-event-driven/client
+      - /boot-camp-event-driven/client/node_modules/
+    env_file:
+      - .env
+    tty: true
+
   backend:
     build:
       context: backend
