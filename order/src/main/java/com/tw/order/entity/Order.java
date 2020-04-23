@@ -6,6 +6,8 @@ import com.tw.library.model.Condition;
 import com.tw.library.model.OrderChannelCode;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Random;
@@ -17,14 +19,14 @@ import java.util.UUID;
 public class Order extends AbstractEntity {
 
     protected String refNo;
-    protected OrderChannelCode channelCode;
     protected ZonedDateTime assignmentDateTime;
 
+    @Enumerated(EnumType.STRING)
+    protected OrderChannelCode channelCode;
+
     public Order() {
-        if (super.isNew) {
-            this.refNo = UUID.randomUUID().toString();
-            this.assignmentDateTime = ZonedDateTime.now(ZoneOffset.UTC);
-        }
+        this.refNo = UUID.randomUUID().toString();
+        this.assignmentDateTime = ZonedDateTime.now(ZoneOffset.UTC);
     }
 
     public Order(String refNo, OrderChannelCode channelCode) {

@@ -1,7 +1,7 @@
 #### Stage 1: A minimal docker image with command to run the app
 FROM openjdk:11-jdk-slim
 
-ENV HOME="/boot-camp-event-driven/backend"
+ENV HOME="/boot-camp-event-driven/inventory"
 ENV JAVA_OPTS=""
 
 # Set the current working directory inside the image
