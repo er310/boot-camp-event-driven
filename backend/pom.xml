@@ -12,7 +12,7 @@
     <artifactId>backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>backend</name>
-    <description>Backend Service in Event Driven Architecture with Spring Boot</description>
+    <description>Backend Service for Spring Boot within Event Driven Architecture</description>
 
     <properties>
         <java.version>11</java.version>

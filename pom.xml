@@ -15,6 +15,7 @@
         <module>backend</module>
         <module>inventory</module>
         <module>order</module>
+        <module>amazon</module>
     </modules>
 
 </project>

@@ -13,7 +13,7 @@ services:
       ACTIVEMQ_ADMIN_LOGIN: admin
       ACTIVEMQ_ADMIN_PASSWORD: admin
     volumes:
-    - mq-activemq:/opt/activemq
+      - mq-activemq:/opt/activemq
     ports:
       - "61616:61616"
       - "61613:61613"
@@ -71,5 +71,28 @@ services:
       - "9227:9221"
     depends_on:
       - inventory-mongodb
+    env_file:
+      - .env
+
+  amazon-mongodb:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: event-driven-amazon
+      #MONGO_INITDB_ROOT_USERNAME: root
+      #MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - db-mongodb:/amazon-mongodb/data/db
+    ports:
+      - "27011:27017"
+
+  amazon:
+    build:
+      context: amazon
+    ports:
+      - "8088:8080"
+      - "9228:9221"
+    depends_on:
+      - amazon-mongodb
     env_file:
       - .env

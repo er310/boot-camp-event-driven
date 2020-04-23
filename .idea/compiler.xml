@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="backend" />
         <module name="inventory" />
+        <module name="amazon" />
         <module name="order" />
         <module name="library" />
         <module name="test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="amazon" target="11" />
       <module name="api" target="13" />
       <module name="backend" target="11" />
       <module name="boot-camp-event-driven" target="1.5" />
@@ -25,6 +27,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="amazon" options="-parameters" />
       <module name="api" options="-parameters" />
       <module name="backend" options="-parameters" />
       <module name="inventory" options="-parameters" />
