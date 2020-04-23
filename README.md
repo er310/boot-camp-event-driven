@@ -50,4 +50,4 @@ password = admin
 
 ##### Reference to All the Services
 
-[List of All the Services](docker-compose.yml)
+[List of all the services](docker-compose.yml)
