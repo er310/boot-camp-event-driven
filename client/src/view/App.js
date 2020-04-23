@@ -2,22 +2,11 @@ import React from 'react';
 
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import FormGroup from '@material-ui/core/FormGroup';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
-import {makeStyles} from '@material-ui/core/styles';
 
 import {apiEndPoint} from 'config';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: '30ch',
-        },
-    },
-}));
 
 class App extends React.Component {
     constructor(props) {
@@ -49,8 +38,6 @@ class App extends React.Component {
     }
 
     render() {
-        const classes = useStyles();
-
         return (
             <React.Fragment>
                 <CssBaseline/>
@@ -61,36 +48,31 @@ class App extends React.Component {
                           alignItems="center"
                           spacing={3}>
                         <Grid item xs={6}>
-                            <FormGroup row>
-                                <form className={classes.root} noValidate autoComplete="off"
-                                      onSubmit={this.handleSubmit}>
-                                    <div>
-                                        <TextField
-                                            id="costume-id"
-                                            label="Costume Reference No."
-                                            value={this.state.costumeId}
-                                            variant="filled"
-                                        />
-                                        <TextField
-                                            id="name"
-                                            label="Name"
-                                            value={this.state.name}
-                                            variant="filled"
-                                        />
-                                        <TextField
-                                            id="condition"
-                                            label="Condition"
-                                            value={this.state.condition}
-                                            variant="filled"
-                                        />
-                                    </div>
-                                    <div>
-                                        <Button variant="contained" color="primary">
-                                            Submit
-                                        </Button>
-                                    </div>
-                                </form>
-                            </FormGroup>
+                            <form
+                                noValidate autoComplete="off"
+                                onSubmit={this.handleSubmit}>
+                                <TextField
+                                    id="costume-id"
+                                    label="Costume Reference No."
+                                    value={this.state.costumeId}
+                                    variant="filled"
+                                />
+                                <TextField
+                                    id="name"
+                                    label="Name"
+                                    value={this.state.name}
+                                    variant="filled"
+                                />
+                                <TextField
+                                    id="condition"
+                                    label="Condition"
+                                    value={this.state.condition}
+                                    variant="filled"
+                                />
+                                <Button variant="contained" color="primary">
+                                    Submit
+                                </Button>
+                            </form>
                         </Grid>
                     </Grid>
                 </Container>
