@@ -125,8 +125,6 @@ function insert(costumeId, name, condition) {
         body: JSON.stringify({costumeId, name, condition})
     };
 
-    console.log(requestOptions);
-
     return fetch(`${apiEndPoint.apiUrl}/costumes`, requestOptions)
         .then(costume => {
             return costume;
