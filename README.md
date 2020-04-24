@@ -15,7 +15,7 @@ Event Driven Architecture with Spring Boot
 
 Frontend -> Backend
 
-### ActiveMQ - EventSourcing
+### ActiveMQ - Pub/Sub
 
 Backend -> <- Inventory -> <- Order -> <- Amazon
 
