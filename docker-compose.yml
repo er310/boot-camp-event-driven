@@ -1,4 +1,4 @@
-version: "2"
+version: "2.4"
 volumes:
   db-postgresdb:
   db-mongodb:
@@ -30,11 +30,7 @@ services:
       - "9210:9220"
     depends_on:
       - backend
-    entrypoint:
-      - /bin/bash
-      - -c
-    command:
-      - "npm start"
+    command: npm start
     volumes:
       - ./client:/boot-camp-event-driven/client
       - /boot-camp-event-driven/client/node_modules/

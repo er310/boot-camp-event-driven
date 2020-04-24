@@ -1,10 +1,16 @@
 import React from 'react';
 
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
+import {Form, Field} from 'react-final-form';
+import {TextField, Select} from 'final-form-material-ui';
+import {
+    Typography,
+    Paper,
+    Grid,
+    Button,
+    Container,
+    CssBaseline,
+    MenuItem
+} from '@material-ui/core';
 
 import {apiEndPoint} from 'config';
 
@@ -12,29 +18,12 @@ class App extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            costumeId: '',
-            name: '',
-            condition: '',
-            submitted: false
-        };
-
-        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(e) {
-        const {name, value} = e.target;
-        this.setState({[name]: value});
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-
-        this.setState({submitted: true});
-
-        const {costumeId, name, condition} = this.state;
-        insert(costumeId, name, condition).then(r => console.log('done'));
+    handleSubmit(values) {
+        const {costumeId, name, condition} = values;
+        insert(costumeId, name, condition).then(done => console.log('Completed: ' + done));
     }
 
     render() {
@@ -46,33 +35,79 @@ class App extends React.Component {
                           direction="row"
                           justify="center"
                           alignItems="center"
-                          spacing={3}>
-                        <Grid item xs={6}>
-                            <form
-                                noValidate autoComplete="off"
-                                onSubmit={this.handleSubmit}>
-                                <TextField
-                                    id="costume-id"
-                                    label="Costume Reference No."
-                                    value={this.state.costumeId}
-                                    variant="filled"
-                                />
-                                <TextField
-                                    id="name"
-                                    label="Name"
-                                    value={this.state.name}
-                                    variant="filled"
-                                />
-                                <TextField
-                                    id="condition"
-                                    label="Condition"
-                                    value={this.state.condition}
-                                    variant="filled"
-                                />
-                                <Button variant="contained" color="primary">
-                                    Submit
-                                </Button>
-                            </form>
+                          spacing={2}>
+                        <Grid item xs={8}>
+                            <Typography variant="h5" align="center" component="h2" gutterBottom>
+                                BootCamp Event Driven Architecture Example
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={8}>
+                            <Form
+                                onSubmit={this.handleSubmit}
+                                render={({handleSubmit, reset, submitting, pristine, values}) => (
+                                    <form onSubmit={handleSubmit}>
+                                        <Paper style={{padding: 16}}>
+                                            <Grid container alignItems="flex-start" spacing={2}>
+                                                <Grid item xs={12}>
+                                                    <Field
+                                                        name="costumeId"
+                                                        fullWidth
+                                                        required
+                                                        component={TextField}
+                                                        type="text"
+                                                        label="Costume Id"
+                                                    />
+                                                </Grid>
+                                                <Grid item xs={12}>
+                                                    <Field
+                                                        name="name"
+                                                        fullWidth
+                                                        required
+                                                        component={TextField}
+                                                        type="text"
+                                                        label="Name"
+                                                    />
+                                                </Grid>
+
+                                                <Grid item xs={12}>
+                                                    <Field
+                                                        fullWidth
+                                                        name="condition"
+                                                        component={Select}
+                                                        label="Select a Condition"
+                                                        formControlProps={{fullWidth: true}}
+                                                    >
+                                                        <MenuItem value="NEW">NEW</MenuItem>
+                                                        <MenuItem value="LIKE_NEW">LIKE NEW</MenuItem>
+                                                        <MenuItem value="USED">USED</MenuItem>
+                                                    </Field>
+                                                </Grid>
+
+                                                <Grid item style={{marginTop: 16}}>
+                                                    <Button
+                                                        type="button"
+                                                        variant="contained"
+                                                        onClick={reset}
+                                                        disabled={submitting || pristine}
+                                                    >
+                                                        Reset
+                                                    </Button>
+                                                </Grid>
+                                                <Grid item style={{marginTop: 16}}>
+                                                    <Button
+                                                        variant="contained"
+                                                        color="primary"
+                                                        type="submit"
+                                                        disabled={submitting}
+                                                    >
+                                                        Submit
+                                                    </Button>
+                                                </Grid>
+                                            </Grid>
+                                        </Paper>
+                                    </form>
+                                )}
+                            />
                         </Grid>
                     </Grid>
                 </Container>
@@ -89,6 +124,8 @@ function insert(costumeId, name, condition) {
         },
         body: JSON.stringify({costumeId, name, condition})
     };
+
+    console.log(requestOptions);
 
     return fetch(`${apiEndPoint.apiUrl}/costumes`, requestOptions)
         .then(costume => {
