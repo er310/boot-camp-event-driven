@@ -44,7 +44,7 @@ http://localhost:3010/
 
 ##### Swagger for Backend
 
-http://localhost:8085/v1/swagger-ui/index.html
+http://localhost:8085/v1/swagger-ui/index.html?configUrl=/v1/api-docs/swagger-config#/
 
 ##### ActiveMQ - Pub/Sub
 
