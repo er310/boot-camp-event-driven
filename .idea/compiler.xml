@@ -7,11 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="backend" />
-        <module name="inventory" />
+        <module name="test" />
         <module name="amazon" />
         <module name="order" />
         <module name="library" />
-        <module name="test" />
+        <module name="inventory" />
+        <module name="fake-amazon" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,6 +20,7 @@
       <module name="api" target="13" />
       <module name="backend" target="11" />
       <module name="boot-camp-event-driven" target="1.5" />
+      <module name="fake-amazon" target="1.8" />
       <module name="inventory" target="11" />
       <module name="library" target="11" />
       <module name="order" target="11" />
@@ -30,6 +32,7 @@
       <module name="amazon" options="-parameters" />
       <module name="api" options="-parameters" />
       <module name="backend" options="-parameters" />
+      <module name="fake-amazon" options="-parameters" />
       <module name="inventory" options="-parameters" />
       <module name="library" options="-parameters" />
       <module name="order" options="-parameters" />

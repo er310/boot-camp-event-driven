@@ -23,7 +23,12 @@ public enum JmsServiceCode {
     TOPIC_EBAY(Constants.TOPIC_EBAY),
     QUEUE_EBAY(Constants.QUEUE_EBAY),
     TOPIC_EBAY_ORDER(Constants.TOPIC_EBAY_ORDER),
-    QUEUE_EBAY_ORDER(Constants.QUEUE_EBAY_ORDER);
+    QUEUE_EBAY_ORDER(Constants.QUEUE_EBAY_ORDER),
+
+    TOPIC_SELL(Constants.TOPIC_SELL),
+    QUEUE_SELL(Constants.QUEUE_SELL),
+    TOPIC_SELL_ORDER(Constants.TOPIC_SELL_ORDER),
+    QUEUE_SELL_ORDER(Constants.QUEUE_SELL_ORDER);
 
     private final String code;
 
@@ -58,5 +63,10 @@ public enum JmsServiceCode {
         public static final String QUEUE_EBAY = "QUEUE.AMAZON";
         public static final String TOPIC_EBAY_ORDER = "TOPIC.EBAY.ORDER";
         public static final String QUEUE_EBAY_ORDER = "QUEUE.EBAY.ORDER";
+
+        public static final String TOPIC_SELL = "TOPIC.SELL";
+        public static final String QUEUE_SELL = "QUEUE.SELL";
+        public static final String TOPIC_SELL_ORDER = "TOPIC.SELL.ORDER";
+        public static final String QUEUE_SELL_ORDER = "QUEUE.SELL.ORDER";
     }
 }

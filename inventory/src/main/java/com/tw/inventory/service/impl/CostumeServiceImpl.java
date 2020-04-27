@@ -41,7 +41,7 @@ public class CostumeServiceImpl extends AbstractService<Costume, Long> implement
 
             CostumeDto costumeDto = new CostumeDto(
                     costume.getName(), costume.getRefNo(), costume.getCondition());
-            Costume costume1 = repository.save(costume);
+            Costume costume1 = repository.insert(costume);
             if (costume1 != null) {
                 OrderDto orderDto = new OrderDto(costumeDto);
 

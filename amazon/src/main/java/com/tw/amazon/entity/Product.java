@@ -3,6 +3,7 @@ package com.tw.amazon.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tw.library.model.Condition;
+import com.tw.library.model.SellStatus;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.ZoneOffset;
@@ -17,12 +18,18 @@ public class Product extends AbstractEntity {
     protected boolean isPublished;
     protected Condition condition;
     protected String description;
+    protected SellStatus status;
     protected ZonedDateTime deliveryDateTime;
     protected ZonedDateTime createdDateTime;
 
+    public Product() {
+    }
+
     public Product(String refNo, Condition condition) {
         this.refNo = refNo;
+        this.isPublished = false;
         this.condition = condition;
+        this.status = SellStatus.SELL;
         this.createdDateTime = ZonedDateTime.now(ZoneOffset.UTC);
     }
 
@@ -56,6 +63,14 @@ public class Product extends AbstractEntity {
 
     public String getDescription() {
         return this.description;
+    }
+
+    public void setStatus(SellStatus status) {
+        this.status = status;
+    }
+
+    public SellStatus getStatus() {
+        return this.status;
     }
 
     public void setDeliveryDateTime(ZonedDateTime deliveryDateTime) {

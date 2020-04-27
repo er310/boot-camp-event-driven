@@ -6,4 +6,6 @@ import com.tw.library.dto.OrderDto;
 
 public interface ProductService extends BaseService<Product, Long> {
     Result<OrderDto> create(OrderDto dto);
+
+    Result<OrderDto> webHook(OrderDto dto);
 }

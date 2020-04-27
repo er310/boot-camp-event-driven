@@ -115,3 +115,12 @@ services:
       - amazon-mongodb
     env_file:
       - .env
+
+  fake-amazon:
+    build:
+      context: fake-amazon
+    ports:
+      - "8089:8080"
+      - "9229:9221"
+    env_file:
+      - .env
