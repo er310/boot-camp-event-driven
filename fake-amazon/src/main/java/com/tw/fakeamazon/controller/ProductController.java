@@ -15,7 +15,8 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/v1/products")
 public class ProductController {
-    @Value("amazon.url")
+
+    @Value("${amazon.url}")
     private String baseUrl;
 
     private final RestTemplate restTemplate;

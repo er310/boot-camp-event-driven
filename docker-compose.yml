@@ -1,7 +1,8 @@
 version: "2.4"
 volumes:
-  db-postgresdb:
-  db-mongodb:
+  order-postgresdb:
+  amazon-mongodb:
+  inventory-mongodb:
   mq-activemq:
 
 services:
@@ -55,7 +56,7 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
     volumes:
-      - db-postgresdb:/var/lib/order-postgresdb/data
+      - order-postgresdb:/var/lib/order-postgresdb/data
     ports:
       - "5435:5432"
 
@@ -78,7 +79,7 @@ services:
       #MONGO_INITDB_ROOT_USERNAME: root
       #MONGO_INITDB_ROOT_PASSWORD: root
     volumes:
-      - db-mongodb:/inventory-mongodb/data/db
+      - inventory-mongodb:/inventory-mongodb/data/db
     ports:
       - "27010:27017"
 
@@ -101,7 +102,7 @@ services:
       #MONGO_INITDB_ROOT_USERNAME: root
       #MONGO_INITDB_ROOT_PASSWORD: root
     volumes:
-      - db-mongodb:/amazon-mongodb/data/db
+      - amazon-mongodb:/amazon-mongodb/data/db
     ports:
       - "27011:27017"
 

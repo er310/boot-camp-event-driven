@@ -13,20 +13,20 @@ import com.tw.library.amazon.ProductRequest;
 import com.tw.library.model.JmsServiceCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import static org.springframework.data.mongodb.core.query.Criteria.where;
-
 @Service
 public class ProductServiceImpl extends AbstractService<Product, Long> implements ProductService {
 
-    @Value("fake-amazon.url")
+    @Value("${fake-amazon.url}")
     private String baseUrl;
 
     private final ProductRepository repository;
@@ -62,11 +62,18 @@ public class ProductServiceImpl extends AbstractService<Product, Long> implement
                         product.getDescription()
                 );
 
-                ResponseEntity<ProductResponse> response = this.restTemplate.postForEntity(
-                        baseUrl + "/products", productRequest, ProductResponse.class);
+                HttpEntity<ProductRequest> request = new HttpEntity<>(productRequest);
+                ResponseEntity<Result<ProductResponse>> response = this.restTemplate.exchange(
+                        baseUrl + "/products",
+                        HttpMethod.POST,
+                        request,
+                        new ParameterizedTypeReference<>() {
+                        });
                 if (response.getStatusCodeValue() == 200) {
                     product1.setIsPublished(true);
-                    product1.setStatus(response.getBody().getStatus());
+                    
+                    if (response.getBody() != null)
+                        product1.setStatus(response.getBody().getValue().getStatus());
 
                     repository.save(product1);
                 }
